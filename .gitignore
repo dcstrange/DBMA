@@ -167,4 +167,5 @@ tests/agency_manifesto.txt
 tests/settings.json
 
 
-oai-config
+secret-configs
+settings.json
