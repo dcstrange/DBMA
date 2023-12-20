@@ -4,7 +4,8 @@
 1. 初步构建一个Agency for DBA
 
 # 待解决工程问题
-1. 实现伪DB交互环境
+- 实现伪DB交互环境。Status:☑️
+   - 实现在DBMA/db_pseudo_env目录中。包含着一个伪DB环境Web Server，和向伪DB环境发送任务消息的Client。使用命令`python db_pseudo_env/db_pseudu_env_server.py`启动伪DB环境Server，并访问 http://localhost:5000/task 查看任务并手动输入任务执行结果。
 
 # 待研究难题
 1. 提示词工程：如何为Agent角色化提供初始Instruction，促使任务高质量推进。Instruction需要考虑以下方面
