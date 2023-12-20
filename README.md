@@ -1,13 +1,34 @@
 ![image](https://github.com/dcstrange/DBMA/assets/19701927/732a9a44-767a-4d69-88e0-d8ce7ada3286)
 
 # 待完成功能
+
+## 🔥High Priority
+
 - [ ] 初步构建一个Agency for DBA
 
+## 🧊Low Priority
+
+- [ ] 在与DB环境交互的部分，后续使用真实功能替换（低优先级），包括Toolkits Agent，Data Analyzer等
+
+## ✅Finished
+
+
+
 # 待解决工程问题
-- [x] 实现伪DB交互环境
+
+## 🔥High Priority
+
+## 🧊Low Priority
+
+## ✅Finished
+
+- 实现伪DB交互环境
   - 实现在DBMA/db_pseudo_env目录中。包含着一个伪DB环境Web Server，和向伪DB环境发送任务消息的Client。使用命令`python db_pseudo_env/db_pseudu_env_server.py`启动伪DB环境Server，并访问 http://localhost:5000/task 查看任务并手动输入任务执行结果。
 
 # 待研究难题
+
+## 🔥High Priority
+
 - [ ] 提示词工程：如何为Agent角色化提供初始Instruction，促使任务高质量推进。Instruction需要考虑以下方面
   - 动作细节
 
