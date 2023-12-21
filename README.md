@@ -64,7 +64,7 @@
 
 [microsoft/LMOps: General technology for enabling AI capabilities w/ LLMs and MLLMs (github.com)](https://github.com/microsoft/LMOps)
 
-
+https://www.promptingguide.ai/
 
 ## Instructor
 
