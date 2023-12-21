@@ -29,19 +29,22 @@
 
 ## 🔥High Priority
 
-- [ ] 提示词工程：如何为Agent角色化提供初始Instruction，促使任务高质量推进。Instruction需要考虑以下方面
+- [ ] 提示词工程：如何为Agent角色化提供初始Instruction，促使任务高质量推进。Instruction需要考虑以下方面 （参考：LMOps）
+  
   - 动作细节
-
+  
   - 接收者非人类，而是Agent
-
+  
   - 输出的一致性
-
+  
   - 输出的丰富性
-
+  
 - [ ] 任务规划：ToT技术。如何在以自然语言作为任务的场景中使用ToT技术。需要考虑两方面：
   - 开放的任务描述 → 有限的Action
 
-  - 为Action打分，eg, UCT、
+  - 为Action打分，eg, UCT
+  
+  - 
   
   
 
@@ -66,3 +69,16 @@
 ## Instructor
 
 [jxnl/instructor: structured outputs for llms (github.com)](https://github.com/jxnl/instructor)
+
+
+
+## ToT/CoT
+
+| Paper                                                        | Topic                                                        | Summary                                                      |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Self-Consistency Improves Chain of Thought Reasoning in Language Models | expand CoT                                                   | CoT的一个完善，简单来说，就是对于一个任务采用多个CoT，最后让所有的CoT进行投票，票数最多结果作为输出 |
+| Tree of Thoughts: Deliberate Problem Solving with Large Language Models | ToT,Long Reasoning                                           | 介绍了CoT的不足之处，以sum24，创意写作为实例介绍了ToT的基本思想以及内容 |
+| Large Language Model Guided Tree-of-Thought                  | ToT System,Long Reasoning                                    | 以数独游戏为示例，设计了一个具体的ToT system来指导LLM完成较难的任务 |
+| Reasoning with Language Model is Planning with World Model   | Reasoning via planning,LLM for Planning,Monte Carlo Tree Search | 文中提出了一个world-model，将任务的解决规划成state0->action0->state1->action1->......根据采取行动后的state来评估action的价值，从而更好地选取action，同时引入奖励机制利用MCTS的方法来进行action空间搜索，从而进行任务规划，该方法在任务规划，长数学推理，长逻辑推理方面都有较好的表现，（DB-GPT中的根因分析就是基于该部分做的） |
+| Automatic Chain of Thought Prompting in Large Language Models | Auto CoT                                                     |                                                              |
+
