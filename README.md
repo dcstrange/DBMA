@@ -41,5 +41,28 @@
 - [ ] 任务规划：ToT技术。如何在以自然语言作为任务的场景中使用ToT技术。需要考虑两方面：
   - 开放的任务描述 → 有限的Action
 
-  - 为Action打分，eg, UCT
+  - 为Action打分，eg, UCT、
+  
+  
 
+# 🛠️相关技术
+
+## AlphaZero
+
+[Mastering the game of Go with deep neural networks and tree search | Nature](https://www.nature.com/articles/nature16961)
+
+[Mastering the game of Go without human knowledge | Nature](https://www.nature.com/articles/nature24270)
+
+[AlphaZero: Shedding new light on chess, shogi, and Go - Google DeepMind](https://deepmind.google/discover/blog/alphazero-shedding-new-light-on-chess-shogi-and-go/)
+
+
+
+## LMOps
+
+[microsoft/LMOps: General technology for enabling AI capabilities w/ LLMs and MLLMs (github.com)](https://github.com/microsoft/LMOps)
+
+
+
+## Instructor
+
+[jxnl/instructor: structured outputs for llms (github.com)](https://github.com/jxnl/instructor)
