@@ -1,4 +1,4 @@
-![image](https://github.com/dcstrange/DBMA/assets/19701927/732a9a44-767a-4d69-88e0-d8ce7ada3286)
+![Framework](./framework.png)
 
 # 待完成功能
 
