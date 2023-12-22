@@ -9,10 +9,9 @@
 ## 🧊Low Priority
 
 - [ ] 在与DB环境交互的部分，后续使用真实功能替换（低优先级），包括Toolkits Agent，Data Analyzer等
+- [ ] 当前Agency-Swarm框架中Agent间沟通的**目的**是“问答”（且单向），这种单一目的的交流方式限制了Agency任务能力。后续考虑在Agency-Swarm底层追加其他目的形式的沟通方式，例如某个Agent有自己的主线任务，它通过其它Agent那里获取消息来不断思考自己的任务。
 
 ## ✅Finished
-
-
 
 # 待解决工程问题
 
