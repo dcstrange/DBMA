@@ -37,7 +37,7 @@ def Assign_DB_Task(task_content, timeout=86400):
         #print(response.json())
     else:
         return "Failed to assign task: no task ID"
-    return response.json()
+    return response.json()['response']
     
     
 
