@@ -1,15 +1,15 @@
 from typing import List
 from agency_swarm import Agent
 
-import team_leader
-import expert_troubleshooting
-import expert_data_modeling
-import expert_migration
-import expert_monitor
-import expert_perf_tuning
-import expert_security
-import expert_recovery
-import expert_scaling
+from . import team_leader
+from . import expert_troubleshooting
+from . import expert_data_modeling
+from . import expert_migration
+from . import expert_monitor
+from . import expert_perf_tuning
+from . import expert_security
+from . import expert_recovery
+from . import expert_scaling
 
 class ExpertTeam:
     

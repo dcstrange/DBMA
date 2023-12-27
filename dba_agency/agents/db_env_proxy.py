@@ -1,9 +1,9 @@
 from agency_swarm import Agent
 from agency_swarm import BaseTool
 from pydantic import Field
-from db_pseudo_env import db_task_api
+import db_pseudo_env.db_task_api as db_api
 
-_name = "ToT_task"
+_name = "db_env_proxy"
 
 _description = """
 responsible for taking specific tasks and executing them in the database environment (including databases, monitoring systems, etc.), planning and executing specific actions.
@@ -31,7 +31,7 @@ class InteractWithDataBaseEnv(BaseTool):
 
     # This code will be executed if the agent calls this tool
     def run(self):
-      db_task_response = db_task_api.Assign_DB_Task(self.specific_task)
+      db_task_response = db_api.Assign_DB_Task(self.specific_task)
       return str(db_task_response)
 
 _tools=[InteractWithDataBaseEnv]

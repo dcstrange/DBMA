@@ -1,5 +1,6 @@
 import os
 from agency_swarm import Agency
+from agency_swarm import Agent
 from agency_swarm import set_openai_key
 
 from agents import task_intention
@@ -7,7 +8,7 @@ from agents import tot_task
 from agents import db_env_proxy
 from agents import rag_advance
 from agents import toolkit
-from dba_agency.agents.experts_team import ExpertTeam
+from agents.experts_team import ExpertTeam
 
 
 proj_dir = "/home/ubuntu/git/DBMA"
@@ -31,6 +32,7 @@ chat_graph = [
     [tot_task, db_env_proxy]
 ]
 
-chat_graph.append(experts_team_chatgraph)
+chat_graph.extend(experts_team_chatgraph)
 for pair in chat_graph:
-        print(f"{pair[0].name} - {pair[1].name}")
+        if not isinstance(pair, Agent):
+            print(f"{pair[0].name} - {pair[1].name}")
