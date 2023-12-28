@@ -36,3 +36,11 @@ chat_graph.extend(experts_team_chatgraph)
 for pair in chat_graph:
         if not isinstance(pair, Agent):
             print(f"{pair[0].name} - {pair[1].name}")
+
+agency_manifesto = """
+You are tasked with solving O&M problems for MySQL users.
+
+"""
+
+agency = Agency(agency_chart=chat_graph, shared_instructions=agency_manifesto)
+agency.demo_gradio(height=900)
