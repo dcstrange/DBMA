@@ -5,8 +5,12 @@
 ## 🔥High Priority
 
 - [ ] 初步构建一个Agency for DBA
+- [ ] Agent Wait preparation机制。例如Team Leader需要等待并汇总（根据某个任务列表）所有Experts的任务意见后，再定夺下一步行动。这样的决策质量可能会更高，降低由于信息不全导致的决策失误。
 
 ## 🧊Low Priority
+- [ ] 持续更新Agent知识。最直接的方法是更新RAG。**Continuous Learning**:
+    - After each interaction, review the accuracy of your topic categorization.
+    - Continuously refine your keyword and phrase recognition patterns based on user feedback and evolving database management trends.
 
 - [ ] 在与DB环境交互的部分，后续使用真实功能替换（低优先级），包括Toolkits Agent，Data Analyzer等
 - [ ] 当前Agency-Swarm框架中Agent间沟通的**目的**是“问答”（且单向），这种单一目的的交流方式限制了Agency任务能力。后续考虑在Agency-Swarm底层追加其他目的形式的沟通方式，例如某个Agent有自己的主线任务，它通过其它Agent那里获取消息来不断思考自己的任务。
