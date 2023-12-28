@@ -16,6 +16,9 @@
 # 待解决工程问题
 
 ## 🔥High Priority
+- [ ] [Agency-Swarm related] Print所有Agent设定，用于观测issue和Benchmark log
+
+- [ ] 考虑运行时自主修改（增删改）Assistant Instruction，可根据任务的执行状态自动优化Assistant和MA结构。
 
 - [ ] 将专家团Expert Team打包成另一个Agency，可能由Team Leader Agent作为对外接口。整个架构是由多个主题的Agencies组成。
 
