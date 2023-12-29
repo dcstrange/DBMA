@@ -27,9 +27,8 @@ experts_team_chatgraph = experts_team.get_chat_graph()
 
 chat_graph = [
     task_intention,
-    [task_intention, tot_task],
-    [tot_task, experts_team_leader],
-    [tot_task, db_env_proxy]
+    [task_intention, experts_team_leader],
+    [experts_team_leader, db_env_proxy]
 ]
 
 chat_graph.extend(experts_team_chatgraph)
