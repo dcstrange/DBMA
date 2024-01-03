@@ -42,6 +42,14 @@ class ExpertTeam:
     def get_chat_graph(self) -> List:
         return self.chat_graph
 
+    def add_agent(self, agent:Agent):
+        self.team.append(agent)
+        self.chat_graph.clear()
+        for i in range(len(self.team)):
+            for j in range(len(self.team)):
+                if i != j:
+                    self.chat_graph.append([self.team[i], self.team[j]])
+
 
 
 if __name__ == "__main__":

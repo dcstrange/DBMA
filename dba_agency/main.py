@@ -22,13 +22,16 @@ task_intention = task_intention.create_agent()
 tot_task = tot_task.create_agent()
 db_env_proxy = db_env_proxy.create_agent()
 experts_team = ExpertTeam()
+
+experts_team.add_agent(db_env_proxy)
+
 experts_team_leader = experts_team.get_team_leader()
 experts_team_chatgraph = experts_team.get_chat_graph()
 
+
 chat_graph = [
     task_intention,
-    [task_intention, experts_team_leader],
-    [experts_team_leader, db_env_proxy]
+    [task_intention, experts_team_leader]
 ]
 
 chat_graph.extend(experts_team_chatgraph)
@@ -37,8 +40,6 @@ for pair in chat_graph:
             print(f"{pair[0].name} - {pair[1].name}")
 
 agency_manifesto = """
-You are tasked with solving O&M problems for MySQL users.
-
 """
 
 agency = Agency(agency_chart=chat_graph, shared_instructions=agency_manifesto)
