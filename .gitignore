@@ -169,4 +169,4 @@ tests/settings.json
 
 secret-configs
 settings.json
-db_pseudo_env/tasks_history
+dba_agency/db_pseudo_env/tasks_history
