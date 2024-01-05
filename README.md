@@ -22,6 +22,8 @@
 ## 🔥High Priority
 - [ ] [Agency-Swarm related] Print所有Agent设定，用于观测issue和Benchmark log
 
+- [ ] 自定义更多功能的SendMessage函数。当前SendMessage函数属于通用内同CoT的提示词。但针对不同目的对话，使用自定义的SendMessage可能会更好。
+
 - [ ] 考虑运行时自主修改（增删改）Assistant Instruction，可根据任务的执行状态自动优化Assistant和MA结构。
 
 - [ ] 将专家团Expert Team打包成另一个Agency，可能由Team Leader Agent作为对外接口。整个架构是由多个主题的Agencies组成。
@@ -44,20 +46,20 @@
 ## 🔥High Priority
 
 - [ ] 提示词工程：如何为Agent角色化提供初始Instruction，促使任务高质量推进。Instruction需要考虑以下方面 （参考：LMOps）
-  
+
   - 动作细节
-  
+
   - 接收者非人类，而是Agent
-  
+
   - 输出的一致性
-  
+
   - 输出的丰富性
-  
 - [ ] 任务规划：ToT技术。如何在以自然语言作为任务的场景中使用ToT技术。需要考虑两方面：
   - 开放的任务描述 → 有限的Action
-
   - 为Action打分，eg, UCT
-  
+
+- [ ] 任务回溯技术。在一个Thread中的任务执行中遇到任务失败时候，需要回溯到上一个分叉节点重新规划路径。那么就需要重新整理这段失败路径上所有参与讨论的Agent的Memory。如何选择上一个分叉节点，如何整理失败经验重新执行任务需要解决。（世杰）
+
 - [ ] **思考如何构造测试benchmark来测试每次升级后MA结构的表现。包括测试用例、数据模型等**
 
 # 🛠️相关技术
