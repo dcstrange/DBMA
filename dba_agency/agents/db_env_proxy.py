@@ -101,9 +101,9 @@ class InteractWithDataBaseEnv(BaseTool):
     """Use this tool to take specific action in database environment.
     This tool takes as parameters the specific action content, eg, command, scripts or third-party tools, it then execute the action in the database environment, and it will finally return the result."""
     chain_of_thought: str = Field(...,
-                                  description="Think step by step to determine the correct commands or scripts of the task"
+                                  description="Determine and list the correct commands or scripts of the given task"
                                               "For multi-step tasks, first break it down into smaller"
-                                              "steps. Then, determine the commands or scripts for xeach step.")
+                                              "steps. Then, determine the commands or scripts for each step.")
     specific_task: str = Field(..., description="The specific commands or scripts interacting with database environment.")
 
 

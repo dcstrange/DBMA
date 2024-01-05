@@ -8,6 +8,7 @@ from agents import tot_task
 from agents import db_env_proxy
 from agents import rag_advance
 from agents import toolkit
+from agents import experts_team
 from agents.experts_team import ExpertTeam
 
 
@@ -23,7 +24,7 @@ tot_task = tot_task.create_agent()
 db_env_proxy = db_env_proxy.create_agent()
 experts_team = ExpertTeam()
 
-experts_team.add_agent(db_env_proxy)
+#experts_team.add_agent(db_env_proxy)
 
 experts_team_leader = experts_team.get_team_leader()
 experts_team_chatgraph = experts_team.get_chat_graph()
@@ -34,7 +35,16 @@ chat_graph = [
     [task_intention, experts_team_leader]
 ]
 
+channels_db_env = []
+experts_team_agents = experts_team.get_team()
+for agent in experts_team_agents:
+     channels_db_env.append([agent, db_env_proxy])
+
+
+
 chat_graph.extend(experts_team_chatgraph)
+chat_graph.extend(channels_db_env)
+
 for pair in chat_graph:
         if not isinstance(pair, Agent):
             print(f"{pair[0].name} - {pair[1].name}")
