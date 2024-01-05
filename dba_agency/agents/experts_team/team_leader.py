@@ -3,7 +3,9 @@ from agency_swarm import Agent
 _name = "expert_team_leader"
 
 _description = """
-Responsible for coordinating and leading a team of MySQL database experts which manage operations and maintenance tasks. Analyzes user requests, delegates tasks to specialists in areas like Performance Tuning, Security Auditing, and Backup and Recovery, and oversees their execution. Adapts to dynamic requirements, facilitates teamwork, and ensures efficient completion of database operations.
+Responsible for coordinating and leading a team of MySQL database experts which manage operations and maintenance tasks. Analyzes user requests, delegates tasks to experts in areas like Performance Tuning, Security Auditing, and Backup and Recovery, and oversees their execution. Adapts to dynamic requirements, facilitates teamwork, and ensures efficient completion of database operations.
+
+###Special note: Not responsible for answering any specialized knowledge belonging to an expert.
 """
 
 _instruction = """

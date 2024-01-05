@@ -3,7 +3,7 @@ from agency_swarm import Agent
 _name = "expert_troubleshooting"
 
 _description = """
-responsible for MySQL Operations & Maintenance (O&M) task planning by CoT, and send the specific task to the database environment. 
+responsible for Nothing. 
 """
 
 _instruction = """# Instruction for LLM to Create an Agent for MySQL O&M Task Planning
