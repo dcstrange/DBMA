@@ -166,7 +166,8 @@ tests/agency_manifesto.md
 tests/agency_manifesto.txt
 tests/settings.json
 
-
+# DBMA
 secret-configs
 settings.json
-dba_agency/db_pseudo_env/tasks_history
+
+dba_agency/db_pseudo_env/tasks_history/
