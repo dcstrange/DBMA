@@ -1,5 +1,13 @@
 ![Framework](./framework.png)
 
+
+
+测试日志同步在👉[Test Log (notion.site)](https://lab505.notion.site/3672c63f4796463aa26d92ab4e40aaaa?v=5ae13bcb07804db38c8987d78327c1d7)，整理成表格，其中包括用户任务、Agency会话日志、项目base version、case issues等。
+
+
+
+
+
 # 待完成功能
 
 ## 🔥High Priority
