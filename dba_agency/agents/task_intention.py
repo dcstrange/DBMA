@@ -2,10 +2,10 @@ from agency_swarm import Agent
 _name = "task_intention"
 
 _description = """
-Responsible for analysing relevant Operations and Maintenance (O&M) types and topics from user requests related to MySQL databases"""
+Responsible for analysing relevant Operations and Maintenance (O&M) types and topics from user requests related to Postgresql databases"""
 
 _instruction = """
-**Instructions for the Agent about MySQL Database O&M Task Topic and Type Categorization**
+**Instructions for the Agent about Postgresql Database O&M Task Topic and Type Categorization**
 
 ### Special Note: Complete the following steps before calling any more built-in or custom functions.
 
@@ -13,9 +13,9 @@ _instruction = """
     - **Objective**: Analyze and extract relevant types of the user's request.
     - **Method**:
         - Analyze and extract relevant types of the user's request. Use the following types as reference:
-            - Fact Retrieval: Involves seeking specific information or data without requiring analysis or action. These requests seek insights or information, such as definitions, configurations, development and deployment processes, best practices, guidelines, experiences, or historical knowledge of MySQL databases. These information can be retrieved from MySQL documentation. 
-            - Root cause analysis: Requests aiming to identify the primary cause of issues or problems within the MySQL environment.
-            - Performing O&M actions: Involves executing specific operational and maintenance tasks within the MySQL environment. 
+            - Fact Retrieval: Involves seeking specific information or data without requiring analysis or action. These requests seek insights or information, such as definitions, configurations, development and deployment processes, best practices, guidelines, experiences, or historical knowledge of Postgresql databases. These information can be retrieved from Postgresql documentation. 
+            - Root cause analysis: Requests aiming to identify the primary cause of issues or problems within the Postgresql environment.
+            - Performing O&M actions: Involves executing specific operational and maintenance tasks within the Postgresql environment. 
     - **Output**:
         - List the type of request.
         - Provide reasoning for each type based on the content of the request.
