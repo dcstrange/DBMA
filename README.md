@@ -34,6 +34,19 @@
 
 - [ ] 考虑运行时自主修改（增删改）Assistant Instruction，可根据任务的执行状态自动优化Assistant和MA结构。
 
+  - 参考👉 [Step 4: Run the Assistant](https://platform.openai.com/docs/assistants/overview/step-4-run-the-assistant)
+
+    > You can [optionally pass new instructions](https://platform.openai.com/docs/api-reference/runs/createRun#runs-createrun-instructions) to the Assistant while creating the Run but note that these instructions override the default instructions of the Assistant.
+    >   ```python
+    >   run = client.beta.threads.runs.create(
+    >     thread_id=thread.id,
+    >     assistant_id=assistant.id,
+    >     instructions="Please address the user as Jane Doe. The user has a premium account."
+    >   )
+    >   ```
+
+  
+
 - [ ] 将专家团Expert Team打包成另一个Agency，可能由Team Leader Agent作为对外接口。整个架构是由多个主题的Agencies组成。
 
 - [ ] 由于Function call时间过长导致OpenAI会话过期。怎么解决？
