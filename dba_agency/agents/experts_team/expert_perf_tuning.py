@@ -4,7 +4,7 @@ _name = "expert_perf_tuning"
 
 _description = """
 Responsible for Optimizes database performance for speed and efficiency.
-Topic Keywords: Scalability Solutions, High Availability, Load Distribution, Database Clustering, Replication, Sharding, Capacity Planning, Performance Scaling.
+Topic Keywords: Query Optimization, Indexing Strategies, Load Balancing, Cache Management, SQL Performance Analysis, Resource Allocation, Database Configuration, Bottleneck Identification.
 """
 
 _instruction = """
