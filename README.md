@@ -22,6 +22,7 @@
 
 - [ ] 在与DB环境交互的部分，后续使用真实功能替换（低优先级），包括Toolkits Agent，Data Analyzer等
 - [ ] 当前Agency-Swarm框架中Agent间沟通的**目的**是“问答”（且单向），这种单一目的的交流方式限制了Agency任务能力。后续考虑在Agency-Swarm底层追加其他目的形式的沟通方式，例如某个Agent有自己的主线任务，它通过其它Agent那里获取消息来不断思考自己的任务。
+- [ ] OpenAI Assistant具备并行调用Functions能力，见[Parallel function calling](https://platform.openai.com/docs/guides/function-calling/parallel-function-calling)。在设计Agent时候需要在任务规划时候考虑到并行函数的能力。例如，Expert Team Leader可以将可以并行处理的任务同时发给三个不同的Experts，将他们返回的结果做后一步的处理。但如果不需要汇总他们的结果再做处理，则可以考虑创建新的Thread/session来并发发起任务。
 
 ## ✅Finished
 
@@ -57,9 +58,10 @@
 
 - [ ] 【AgencySwarm Issue】目前AgencySwarm的Agent间交流机制是同步版本，从root agent (CEO) 开始，<u>递归的</u>调用相关Agent的SendMessage函数。虽然在AgencySwarm抽象出了CommunicationThread对象（见`agency_swarm\threads\thread.py`），即每个pair <sender agent, recipient agent> 所对应的上下文，但所有的Thread对象在单线程中被串行执行，而且消息回复仅仅是简单的function return。后面需要改成多线程，异步版本。备注：当前版本是通过`Thread._execute_tool(thread.self, self.recipient_agent.SendMessage())`来attach到新的CommunicationThread上下文的。
   - 修改思路：每个Agent的实现为一个系统线程，Agent实例包含着对应Assitant环境，和由self作为message Sender的所有会话（Session）。我们使用Session替换掉CommunicationThread，因为CommunicationThread对象实在单线程中被Agency全局管理，Session由Agent线程自己管理。这样消息发送/回复的机制就可以是REST接口了。
-  
   - AgencySwarm原始方案
-  <img src="./figures/tmp437D.png" alt="image-20231226143945843" style="zoom: 25%;" /> <img src="./figures/tmpA15E.png" alt="image-20231226143945843" style="zoom: 25%;" />
+    <img src="./figures/tmp437D.png" alt="image-20231226143945843" style="zoom: 25%;" /> <img src="./figures/tmpA15E.png" alt="image-20231226143945843" style="zoom: 25%;" />
+  
+  - [ ] [AgencySwarm]未考虑step status = 'tool_calls'的情况，在该状态下assistant将并行调用多个自定义functions
 
 ## ✅Finished
 
