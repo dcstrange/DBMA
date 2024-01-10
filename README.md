@@ -13,7 +13,19 @@
 ## 🔥High Priority
 
 - [ ] 初步构建一个Agency for DBA
+
 - [ ] Agent Wait preparation机制。例如Team Leader需要等待并汇总（根据某个任务列表）所有Experts的任务意见后，再定夺下一步行动。这样的决策质量可能会更高，降低由于信息不全导致的决策失误。
+
+- [ ] u通过分析AgencySwarm的Thread模型原理，见👉[AgencySwarm的Thread模型示意图](https://www.tldraw.com/s/v2_c_m0bdZk79sD7VRSGuy9Wey?viewport=-87%2C949%2C2752%2C1421&page=page%3Ag4Y6m6dC5av24msFBw96F)，了解到它为每个用户指定的Agent Pair<Sender, Recipient>定义了一个Thread对象，该对象持有一个Assistant.Thread对象。Assistant.Thread上下文用于在Recipient Assistant上执行RUN。AgencySwarm的Thread模型的本质是记录着Agent Pair<Sender, Recipient>的元信息，实际上更适合用Session表示。SendMessage函数利用AgencySwarm的Thread对象来找到Recipient‘s Assistant.Thread对象，并发送消息。
+
+  关于SendMessage有以下几点不足：
+
+  1. 缺少对父任务的描述。SendMessage目前仅会发送对新任务的描述，缺少总任务的背景、当前的状态。
+     - 考虑：在SendMessage中添加父任务描述的参数。
+  2. 无关联任务会复用Thread。这会导致无关联的任务的上下文混合在Thead中。
+     - 考虑：为新主题的任务创建新的Session。这涉及到如何决策是否要创建新的Session，新的Session中的Assistant.Thread如何创建。例如，可以同时为<Sender, Recipient>创建新的Assistant.Thread，并且在框架中起一个新的Python进程来驱动该Session。
+  3. 无法发起多个Agents共同参与的会话。
+     - 考虑，基于Assistant.Thread添加多人会话机制，重点是消息内容（比如要显示角色名称），消息处理方式，讨论方式。
 
 ## 🧊Low Priority
 - [ ] 持续更新Agent知识。最直接的方法是更新RAG。**Continuous Learning**:
@@ -31,6 +43,8 @@
 ## 🔥High Priority
 - [ ] [Agency-Swarm related] Print所有Agent设定，用于观测issue和Benchmark log
 
+- [ ] [Agency-Swarm related] 区分打印消息时候的"talk to"和“response to"的图标。当前版本统一用了🗣️表示。
+
 - [ ] 自定义更多功能的SendMessage函数。当前SendMessage函数属于通用内同CoT的提示词。但针对不同目的对话，使用自定义的SendMessage可能会更好。
 
 - [ ] 考虑运行时自主修改（增删改）Assistant Instruction，可根据任务的执行状态自动优化Assistant和MA结构。
@@ -46,10 +60,6 @@
     >   )
     >   ```
 
-  
-
-- [ ] 将专家团Expert Team打包成另一个Agency，可能由Team Leader Agent作为对外接口。整个架构是由多个主题的Agencies组成。
-
 - [ ] 由于Function call时间过长导致OpenAI会话过期。怎么解决？
   - openai.BadRequestError: Error code: 400 - {'error': {'message': 'Runs in status "expired" do not accept tool outputs.', 'type': 'invalid_request_error', 'param': None, 'code': None}}
 
@@ -62,6 +72,8 @@
     <img src="./figures/tmp437D.png" alt="image-20231226143945843" style="zoom: 25%;" /> <img src="./figures/tmpA15E.png" alt="image-20231226143945843" style="zoom: 25%;" />
   
   - [ ] [AgencySwarm]未考虑step status = 'tool_calls'的情况，在该状态下assistant将并行调用多个自定义functions
+  
+  - [ ] 将专家团Expert Team打包成另一个Agency，可能由Team Leader Agent作为对外接口。整个架构是由多个主题的Agencies组成。[重要不紧急]
 
 ## ✅Finished
 
