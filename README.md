@@ -20,7 +20,7 @@
 
   关于SendMessage有以下几点不足：
 
-  1. 缺少对父任务的描述。SendMessage目前仅会发送对新任务的描述，缺少总任务的背景、当前的状态。
+  1. 缺少对父任务的描述。目前SendMessage去invoke接收者thread时，仅会发送对新任务的描述，缺少总任务的背景和当前的状态。
      - 考虑：在SendMessage中添加父任务描述的参数。
   2. 无关联任务会复用Thread。这会导致无关联的任务的上下文混合在Thead中。
      - 考虑：为新主题的任务创建新的Session。这涉及到如何决策是否要创建新的Session，新的Session中的Assistant.Thread如何创建。例如，可以同时为<Sender, Recipient>创建新的Assistant.Thread，并且在框架中起一个新的Python进程来驱动该Session。

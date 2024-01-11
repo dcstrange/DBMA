@@ -5,7 +5,7 @@ The MySQL Database Operations Expert Group consists of a number of database oper
 	- Performance tuning
     - Backup and recovery
     - Security auditing
-    - Extension operations
+    - Scaling operations
     - Database migration
     - Data Modeling and Design
     - Monitoring and Alerting
