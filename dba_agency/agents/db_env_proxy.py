@@ -6,7 +6,7 @@ import db_pseudo_env.db_task_api as db_api
 _name = "db_env_proxy"
 
 _description = """
-Responsible for performing specific tasks and operations in the database environment (including databases, monitoring systems, etc.) using the "InteractWithDataBaseEnv" function.
+Responsible for receiving specific tasks and operations and executing them in a database environment, including databases, Prometheus, grafna, etc.
 """
 
 # _instruction = """ #Instructions for Database Environment Agent
