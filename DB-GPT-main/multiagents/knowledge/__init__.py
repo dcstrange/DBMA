@@ -1,2 +1,0 @@
-from .knowledge_extraction import KnowledgeExtraction
-from .info_retrieval_algorithm import bm25
