@@ -108,7 +108,7 @@ class InteractWithDataBaseEnv(BaseTool):
 
 
     # This code will be executed if the agent calls this tool
-    def run(self):
+    def run(self, caller_thread):
       db_task_response = db_api.Assign_DB_Task(self.specific_task)
       return str(db_task_response)
 
