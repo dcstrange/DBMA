@@ -39,7 +39,7 @@ channels_db_env = []
 experts_team_agents = experts_team.get_team()
 for agent in experts_team_agents:
      channels_db_env.append([agent, db_env_proxy])
-
+channels_db_env.remove([experts_team_leader, db_env_proxy])
 
 
 chat_graph.extend(experts_team_chatgraph)
