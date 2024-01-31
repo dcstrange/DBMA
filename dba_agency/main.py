@@ -1,4 +1,16 @@
 import os
+from pathlib import Path
+from getpass import getpass
+
+project_root = Path(__file__).parent.parent.absolute()
+os.environ['AS_PROJECT_ROOT'] = str(project_root)
+print("Project root set to:", os.environ['AS_PROJECT_ROOT'])
+
+from agency_swarm import setup_logging # os.environ['AS_PROJECT_ROOT'] where the log dir is created
+logger = setup_logging()
+logger.info('This is a debug message')
+
+
 from agency_swarm import Agency
 from agency_swarm import Agent
 from agency_swarm import set_openai_key
@@ -11,13 +23,14 @@ from agents import toolkit
 from agents import experts_team
 from agents.experts_team import ExpertTeam
 
-
-proj_dir = "/home/ubuntu/git/DBMA"
-secret_dir = proj_dir + "/secret-configs"
-with open(secret_dir + "/OAI_API_KEY") as f:
-    os.environ['OPENAI_API_KEY'] = f.read()
-
+secret_file_path = os.path.join(project_root, 'secret-configs', 'OAI_API_KEY')
+with open(secret_file_path) as f:
+    if f:
+        os.environ['OPENAI_API_KEY'] = f.read()
+    else:
+        os.environ['OPENAI_API_KEY'] = getpass("Please enter your openai key:")
 set_openai_key(os.environ['OPENAI_API_KEY'])
+
 
 task_intention = task_intention.create_agent()
 tot_task = tot_task.create_agent()
