@@ -10,10 +10,17 @@ from agency_swarm import setup_logging # os.environ['AS_PROJECT_ROOT'] where the
 logger = setup_logging()
 logger.info('This is a debug message')
 
+from agency_swarm import set_openai_key
+secret_file_path = os.path.join(project_root, 'secret-configs', 'OAI_API_KEY')
+with open(secret_file_path) as f:
+    if f:
+        os.environ['OPENAI_API_KEY'] = f.read()
+    else:
+        os.environ['OPENAI_API_KEY'] = getpass("Please enter your openai key:")
+set_openai_key(os.environ['OPENAI_API_KEY'])
 
 from agency_swarm import Agency
 from agency_swarm import Agent
-from agency_swarm import set_openai_key
 
 from agents import task_intention
 from agents import tot_task
@@ -23,13 +30,7 @@ from agents import toolkit
 from agents import experts_team
 from agents.experts_team import ExpertTeam
 
-secret_file_path = os.path.join(project_root, 'secret-configs', 'OAI_API_KEY')
-with open(secret_file_path) as f:
-    if f:
-        os.environ['OPENAI_API_KEY'] = f.read()
-    else:
-        os.environ['OPENAI_API_KEY'] = getpass("Please enter your openai key:")
-set_openai_key(os.environ['OPENAI_API_KEY'])
+
 
 
 task_intention = task_intention.create_agent()
