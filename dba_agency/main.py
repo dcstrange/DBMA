@@ -67,4 +67,4 @@ agency_manifesto = """
 """
 
 agency = Agency(agency_chart=chat_graph, shared_instructions=agency_manifesto)
-agency.demo_gradio(height=900)
+agency.demo_gradio(height=1800)
