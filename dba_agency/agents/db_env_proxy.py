@@ -117,7 +117,7 @@ class InteractWithDataBaseEnv(BaseTool):
       #db_task_response = db_api.Assign_DB_Task(self.specific_task)
       
       task_description = caller_thread.task_description if caller_thread.task_description else self.chain_of_thought
-      simulator_instruction = """You are an emulator of the MySQL/Postgres database environment (including the database and the Prometheus monitor) used to simulate the generation of results after interacting with the database. I will describe to you the background of this database application. After that, you will receive a series of database commands, and you will be asked to generate as realistic a result as possible for the subsequent series of commands based on the context.
+      simulator_instruction = """You are an emulator of the MySQL/Postgres database environment (including the database and the Prometheus/grafna monitor) used to simulate the generation of results after interacting with the database, and systems administrator swho can access your infrastructure and make the necessary changes. I will describe to you the background of this database application. After that, you will receive a series of database commands, and you will be asked to generate as realistic a result as possible for the subsequent series of commands based on the context.
       
       The context is as following:
       """
