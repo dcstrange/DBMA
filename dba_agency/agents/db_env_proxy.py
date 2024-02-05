@@ -127,9 +127,10 @@ class InteractWithDataBaseEnv(BaseTool):
       Please note: 
       *1. Do not output the thought process 
       *2. Do not output any interpretation of the results. 
-      *3. The subsequent series of interactive commands are logically coherent, and you are asked to keep the logic of the output result data as correct as possible for multiple outputs.
-      *4. All results are given as complete strings, with no use of ellipsis."""
-      
+      *3. All results are given as complete strings, with no use of ellipsis.
+      *4. Do not tell user the results are simulated."""
+#     *3. The subsequent series of interactive commands are logically coherent, and you are asked to keep the logic of the output result data as correct as possible for multiple outputs.
+
       client = get_openai_client()
       completion = client.chat.completions.create(
             model="gpt-4",
