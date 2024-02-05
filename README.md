@@ -35,6 +35,8 @@
 - [ ] 在与DB环境交互的部分，后续使用真实功能替换（低优先级），包括Toolkits Agent，Data Analyzer等
 - [ ] 当前Agency-Swarm框架中Agent间沟通的**目的**是“问答”（且单向），这种单一目的的交流方式限制了Agency任务能力。后续考虑在Agency-Swarm底层追加其他目的形式的沟通方式，例如某个Agent有自己的主线任务，它通过其它Agent那里获取消息来不断思考自己的任务。
 - [ ] OpenAI Assistant具备并行调用Functions能力，见[Parallel function calling](https://platform.openai.com/docs/guides/function-calling/parallel-function-calling)。在设计Agent时候需要在任务规划时候考虑到并行函数的能力。例如，Expert Team Leader可以将可以并行处理的任务同时发给三个不同的Experts，将他们返回的结果做后一步的处理。但如果不需要汇总他们的结果再做处理，则可以考虑创建新的Thread/session来并发发起任务。
+- [ ] 自定义更多功能的SendMessage函数。当前SendMessage函数属于通用内同CoT的提示词。但针对不同类型对话，使用自定义的SendMessage可能会更好。当前所有的会话类型都是“任务规划和执行”。
+
 
 ## ✅Finished
 
@@ -43,9 +45,7 @@
 ## 🔥High Priority
 - [ ] [Agency-Swarm related] Print所有Agent设定，用于观测issue和Benchmark log
 
-- [ ] [Agency-Swarm related] 区分打印消息时候的"talk to"和“response to"的图标。当前版本统一用了🗣️表示。
 
-- [ ] 自定义更多功能的SendMessage函数。当前SendMessage函数属于通用内同CoT的提示词。但针对不同目的对话，使用自定义的SendMessage可能会更好。
 
 - [ ] 考虑运行时自主修改（增删改）Assistant Instruction，可根据任务的执行状态自动优化Assistant和MA结构。
 
@@ -59,9 +59,6 @@
     >     instructions="Please address the user as Jane Doe. The user has a premium account."
     >   )
     >   ```
-
-- [ ] 由于Function call时间过长导致OpenAI会话过期。怎么解决？
-  - openai.BadRequestError: Error code: 400 - {'error': {'message': 'Runs in status "expired" do not accept tool outputs.', 'type': 'invalid_request_error', 'param': None, 'code': None}}
 
 
 ## 🧊Low Priority
@@ -79,6 +76,9 @@
 
 - 实现伪DB交互环境
   - 实现在DBMA/db_pseudo_env目录中。包含着一个伪DB环境Web Server，和向伪DB环境发送任务消息的Client。使用命令`python db_pseudo_env/db_pseudu_env_server.py`启动伪DB环境Server，并访问 http://localhost:5000/task 查看任务并手动输入任务执行结果。
+- [Agency-Swarm related] 区分打印消息时候的"talk to"和“response to"的图标。当前版本统一用了🗣️表示。
+- 解决由于Function call时间过长导致OpenAI会话过期。
+    - 由于调用自定义Funtion超时后，Funtion执行结果提交失败，导致RUN进入expired状态。但由于目前AssistantAPI不支持编辑RUN’step，这就无法做到断点续传。因此我们妥协的解决方法是把函数的执行结果包装成提示词消息追加到Thread中，然后re-RUN。
 
 # 待研究难题
 
@@ -135,3 +135,7 @@ https://www.promptingguide.ai/
 | Reasoning with Language Model is Planning with World Model   | Reasoning via planning,LLM for Planning,Monte Carlo Tree Search | 文中提出了一个world-model，将任务的解决规划成state0->action0->state1->action1->......根据采取行动后的state来评估action的价值，从而更好地选取action，同时引入奖励机制利用MCTS的方法来进行action空间搜索，从而进行任务规划，该方法在任务规划，长数学推理，长逻辑推理方面都有较好的表现，（DB-GPT中的根因分析就是基于该部分做的） |
 | Automatic Chain of Thought Prompting in Large Language Models | Auto CoT                                                     |                                                              |
 
+
+相关工作
+
+[[2308.10848\] AgentVerse: Facilitating Multi-Agent Collaboration and Exploring Emergent Behaviors (arxiv.org)](https://arxiv.org/abs/2308.10848)
