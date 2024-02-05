@@ -13,7 +13,7 @@
 ## 🔥High Priority
 - [] 设计Development Team，并将db_env_proxy加入进去。Development Team应将所有的开发人员加入进去，并设计权限机制。
 - [] 重新设计task_intention - user - expert_team_lead的拓扑。甚至我觉得task_intention应该是在用户第一个请求后就被拔掉。因为在后面与用户的确认中，task_intention并未起到任何正面作用。
-
+zz  
 ## 🧊Low Priority
 - [ ] 持续更新Agent知识。最直接的方法是更新RAG。**Continuous Learning**:
     - After each interaction, review the accuracy of your topic categorization.
