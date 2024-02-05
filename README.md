@@ -11,21 +11,8 @@
 # 待完成功能
 
 ## 🔥High Priority
-
-- [ ] 初步构建一个Agency for DBA
-
-- [ ] Agent Wait preparation机制。例如Team Leader需要等待并汇总（根据某个任务列表）所有Experts的任务意见后，再定夺下一步行动。这样的决策质量可能会更高，降低由于信息不全导致的决策失误。
-
-- [ ] u通过分析AgencySwarm的Thread模型原理，见👉[AgencySwarm的Thread模型示意图](https://www.tldraw.com/s/v2_c_m0bdZk79sD7VRSGuy9Wey?viewport=-87%2C949%2C2752%2C1421&page=page%3Ag4Y6m6dC5av24msFBw96F)，了解到它为每个用户指定的Agent Pair<Sender, Recipient>定义了一个Thread对象，该对象持有一个Assistant.Thread对象。Assistant.Thread上下文用于在Recipient Assistant上执行RUN。AgencySwarm的Thread模型的本质是记录着Agent Pair<Sender, Recipient>的元信息，实际上更适合用Session表示。SendMessage函数利用AgencySwarm的Thread对象来找到Recipient‘s Assistant.Thread对象，并发送消息。
-
-  关于SendMessage有以下几点不足：
-
-  1. 缺少对父任务的描述。目前SendMessage去invoke接收者thread时，仅会发送对新任务的描述，缺少总任务的背景和当前的状态。
-     - 考虑：在SendMessage中添加父任务描述的参数。
-  2. 无关联任务会复用Thread。这会导致无关联的任务的上下文混合在Thead中。
-     - 考虑：为新主题的任务创建新的Session。这涉及到如何决策是否要创建新的Session，新的Session中的Assistant.Thread如何创建。例如，可以同时为<Sender, Recipient>创建新的Assistant.Thread，并且在框架中起一个新的Python进程来驱动该Session。
-  3. 无法发起多个Agents共同参与的会话。
-     - 考虑，基于Assistant.Thread添加多人会话机制，重点是消息内容（比如要显示角色名称），消息处理方式，讨论方式。
+- [] 设计Development Team，并将db_env_proxy加入进去。Development Team应将所有的开发人员加入进去，并设计权限机制。
+- [] 重新设计task_intention - user - expert_team_lead的拓扑。甚至我觉得task_intention应该是在用户第一个请求后就被拔掉。因为在后面与用户的确认中，task_intention并未起到任何正面作用。
 
 ## 🧊Low Priority
 - [ ] 持续更新Agent知识。最直接的方法是更新RAG。**Continuous Learning**:
@@ -36,17 +23,19 @@
 - [ ] 当前Agency-Swarm框架中Agent间沟通的**目的**是“问答”（且单向），这种单一目的的交流方式限制了Agency任务能力。后续考虑在Agency-Swarm底层追加其他目的形式的沟通方式，例如某个Agent有自己的主线任务，它通过其它Agent那里获取消息来不断思考自己的任务。
 - [ ] OpenAI Assistant具备并行调用Functions能力，见[Parallel function calling](https://platform.openai.com/docs/guides/function-calling/parallel-function-calling)。在设计Agent时候需要在任务规划时候考虑到并行函数的能力。例如，Expert Team Leader可以将可以并行处理的任务同时发给三个不同的Experts，将他们返回的结果做后一步的处理。但如果不需要汇总他们的结果再做处理，则可以考虑创建新的Thread/session来并发发起任务。
 - [ ] 自定义更多功能的SendMessage函数。当前SendMessage函数属于通用内同CoT的提示词。但针对不同类型对话，使用自定义的SendMessage可能会更好。当前所有的会话类型都是“任务规划和执行”。
+- [ ] Agent Wait preparation机制。例如Team Leader需要等待并汇总（根据某个任务列表）所有Experts的任务意见后，再定夺下一步行动。这样的决策质量可能会更高，降低由于信息不全导致的决策失误。
 
 
 ## ✅Finished
-
+- 初步构建一个Agency for DBA
+- 关于SendMessage有以下几点不足：（已在底层AgencySwarm框架中改造完成）
+  1. ~~缺少对父任务的描述。目前SendMessage去invoke接收者thread时，仅会发送对新任务的描述，缺少总任务的背景和当前的状态。~~
+   ~~\- 考虑：在SendMessage中添加父任务描述的参数。~~
+  2. ~~无关联任务会复用Thread。这会导致无关联的任务的上下文混合在Thead中。~~
+   ~~\- 考虑：为新主题的任务创建新的Session。这涉及到如何决策是否要创建新的Session，新的Session中的Assistant.Thread如何创建。例如，可以同时为<Sender, Recipient>创建新的Assistant.Thread，并且在框架中起一个新的Python进程来驱动该Session。~~
 # 待解决工程问题
 
 ## 🔥High Priority
-- [ ] [Agency-Swarm related] Print所有Agent设定，用于观测issue和Benchmark log
-
-
-
 - [ ] 考虑运行时自主修改（增删改）Assistant Instruction，可根据任务的执行状态自动优化Assistant和MA结构。
 
   - 参考👉 [Step 4: Run the Assistant](https://platform.openai.com/docs/assistants/overview/step-4-run-the-assistant)
@@ -72,6 +61,8 @@
   
   - [ ] 将专家团Expert Team打包成另一个Agency，可能由Team Leader Agent作为对外接口。整个架构是由多个主题的Agencies组成。[重要不紧急]
 
+  - [ ] 无法发起多个Agents共同参与的会话。(目前还未有这种需求场景)
+     - 考虑，基于Assistant.Thread添加多人会话机制，重点是消息内容（比如要显示角色名称），消息处理方式，讨论方式。
 ## ✅Finished
 
 - 实现伪DB交互环境
@@ -79,6 +70,8 @@
 - [Agency-Swarm related] 区分打印消息时候的"talk to"和“response to"的图标。当前版本统一用了🗣️表示。
 - 解决由于Function call时间过长导致OpenAI会话过期。
     - 由于调用自定义Funtion超时后，Funtion执行结果提交失败，导致RUN进入expired状态。但由于目前AssistantAPI不支持编辑RUN’step，这就无法做到断点续传。因此我们妥协的解决方法是把函数的执行结果包装成提示词消息追加到Thread中，然后re-RUN。
+- [Agency-Swarm related] 打印所有运行时日志。日志目录存放在`os.environ['AS_PROJECT_ROOT']`指定的环境变量中（在本项目中`main.py`中定义）
+
 
 # 待研究难题
 
