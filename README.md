@@ -2,8 +2,7 @@
 [中文README](https://github.com/dcstrange/DBMA/blob/main/README_CN.md)
 ![cover](./figures/cover.png)
 
-DBMA (Database Management Agency) is an innovative and comprehensive framework designed to assist with various aspects of database administration (DBA). Here's a detailed introduction based on the analysis of the project's README and several key files in the repository:
-
+DBMA (Database Management Agency) is an innovative and comprehensive framework designed to assist with various aspects of database administration (DBA). 
 ### Overview
 
 DBMA provides an advanced, AI-driven approach to managing and optimizing database operations. The project utilizes a unique Agency model, comprising various specialized agents, each responsible for different aspects of database management. These agents are designed to work collaboratively, ensuring efficient handling of a wide range of database tasks.
