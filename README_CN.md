@@ -1,6 +1,9 @@
 # DBMA
 
-DBMA（数据库管理局）是一个创新性和全面的框架，旨在协助处理各种数据库管理（DBA）方面的问题。以下是基于项目 README 和几个关键文件的分析，对该项目的详细介绍：![cover](./figures/cover.png)
+[English Readme](https://github.com/dcstrange/DBMA/blob/main/README.md)
+![cover](./figures/cover.png)
+
+DBMA（数据库管理局）是一个创新性和全面的框架，旨在协助处理各种数据库管理（DBA）方面的问题。以下是基于项目 README 和几个关键文件的分析，对该项目的详细介绍：
 
 ### 概览
 
@@ -41,5 +44,4 @@ DBMA 非常适合需要高级数据库管理的场景，如：
 DBMA 作为数据库管理领域的先锋解决方案脱颖而出，利用 AI 和模块化的代理方法。它承诺提高数据库操作的效率、可靠性和安全性，满足专业数据库管理员和开发人员的需求。
 
 ### 更多信息
-
-有关更多详情并探索该项目，请访问 [GitHub 仓库](https://github.com/dcstrange/DBMA)。
+该项目的开发细节和进展情况更会不断更新，见 [Progress](https://github.com/dcstrange/DBMA/blob/main/Progress.md)
