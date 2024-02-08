@@ -73,7 +73,7 @@
 
     - 该机制用于构建无需回溯的任务图DAG，以减少由于回溯导致的消息传递冗余，增加任务推进清晰度。
 
-      ![TaskGragh_DAG](.\figures\TaskGragh_DAG.png)
+      <img src="./figures/TaskGragh_DAG.png" alt="TaskGragh_DAG" style="zoom: 33%;" />
 
 - [ ] 🔥支持MA架构的灵活性（flexibility），比如可插拔，可变换拓扑形态（未遇到该需求）
 
