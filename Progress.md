@@ -2,19 +2,19 @@
 
 
 
-测试日志同步在👉[Test Log (notion.site)](https://lab505.notion.site/3672c63f4796463aa26d92ab4e40aaaa?v=5ae13bcb07804db38c8987d78327c1d7)，整理成表格，其中包括用户任务、Agency会话日志、项目base version、case issues等。
+前期的测试日志（~ 2024年1月）同步在👉[Test Log (notion.site)](https://lab505.notion.site/3672c63f4796463aa26d92ab4e40aaaa?v=5ae13bcb07804db38c8987d78327c1d7)，整理成表格，其中包括用户任务、Agency会话日志、项目base version、case issues等。自2024年2月起的测试日志和中间调试信息放在`logs/`目录中。
 
-
-
-
+[TOC]
 
 # 待完成功能
 
 ## 🔥High Priority
-- [] 设计Development Team，并将db_env_proxy加入进去。Development Team应将所有的开发人员加入进去，并设计权限机制。
-- [] 重新设计task_intention - user - expert_team_lead的拓扑。甚至我觉得task_intention应该是在用户第一个请求后就被拔掉。因为在后面与用户的确认中，task_intention并未起到任何正面作用。
-zz  
+- [ ] 设计Development Team，并将db_env_proxy加入进去。Development Team应将所有的开发人员加入进去，并设计权限机制。
+
+- [ ] 重新设计task_intention - user - expert_team_lead的拓扑。甚至我觉得task_intention应该是在用户第一个请求后就被拔掉。因为在后面与用户的确认中，task_intention并未起到任何正面作用。
+
 ## 🧊Low Priority
+
 - [ ] 持续更新Agent知识。最直接的方法是更新RAG。**Continuous Learning**:
     - After each interaction, review the accuracy of your topic categorization.
     - Continuously refine your keyword and phrase recognition patterns based on user feedback and evolving database management trends.
