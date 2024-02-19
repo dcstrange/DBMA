@@ -152,3 +152,5 @@ https://www.promptingguide.ai/
 相关工作
 
 [[2308.10848\] AgentVerse: Facilitating Multi-Agent Collaboration and Exploring Emergent Behaviors (arxiv.org)](https://arxiv.org/abs/2308.10848)
+
+Guo, Taicheng et al. “Large Language Model based Multi-Agents: A Survey of Progress and Challenges.” *ArXiv* abs/2402.01680 (2024): n. pag.
