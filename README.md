@@ -1,4 +1,4 @@
-# DBMA 
+# DBA Agency
 [中文README](https://github.com/dcstrange/DBMA/blob/main/README_CN.md)
 ![cover](./figures/cover.png)
 
