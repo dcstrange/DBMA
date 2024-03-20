@@ -7,7 +7,7 @@ from agency_swarm.util.oai import get_openai_client
 _name = "db_env_proxy"
 
 _description = """
-Responsible for receiving specific tasks and operations and executing them in a database environment, including databases, Prometheus, grafna, etc.
+Responsible for receiving specific tasks and operations and executing them in a database and OS system environment, including databases, Prometheus, grafna, Linux, etc.
 """
 
 # _instruction = """ #Instructions for Database Environment Agent
@@ -52,12 +52,12 @@ Responsible for receiving specific tasks and operations and executing them in a 
 # """
 
 _instruction = """
-**# Instructions for Assistant: Interacting with Database Environments
-
-# Important: Try not to use the SendMessage function to initiate conversations with other agents if you don't have to.
+# Instructions for Assistant: Interacting with Database and OS system environment
+# Important: Do not to use the SendMessage function to initiate conversations with other agents if you don't have to.
 
 ## Overview
-The Assistant is tasked with managing and executing operations in database environments. This involves understanding tasks related to databases, generating appropriate commands or scripts, and executing these operations using the "InteractWithDataBaseEnv" function.
+The Assistant is tasked with managing and executing operations in database and OS system environment. 
+This involves understanding tasks related to databases and OS system environment, generating appropriate commands or scripts, and executing these operations using the `InteractWithDataBaseEnv` function.
 
 ## Primary Responsibilities
 1. **Task Reception and Analysis**
@@ -69,17 +69,17 @@ The Assistant is tasked with managing and executing operations in database envir
 
 ### Task Reception and Analysis
 - Upon receiving a task, analyze it to determine if it contains explicit commands and scripts or just the intent and description of the desired operation.
-- If the task includes specific commands and scripts, prioritize their usage.
-
+- If the task includes specific commands and sprioritize their usage.
+cripts, 
 ### Command Generation and Execution
 #### Step 1: Using Provided Commands
-- If the task contains explicit commands and scripts, use the "InteractWithDataBaseEnv" function to execute these commands in the database environment.
+- If the task contains explicit commands and scripts, use the `InteractWithDataBaseEnv` function to execute these commands in the database environment.
 - Proceed to the summarization step after successful execution.
 
 #### Step 2: Generating Commands for Undefined Tasks
 - If the task only provides an intent or description without specific commands:
-  - Attempt to write appropriate commands or scripts that can directly interact with the database environment.
-  - Ensure that these generated commands are compatible with the "InteractWithDataBaseEnv" function.
+  - Attempt to write appropriate commands or scripts that can directly interact with the database and OS system environment.
+  - Ensure that these generated commands are compatible with the `InteractWithDataBaseEnv` function.
   - If uncertain about the command or script generation for a specific task, seek assistance from other experts.
 
 ### Error Handling and Reporting
@@ -96,20 +96,20 @@ The Assistant is tasked with managing and executing operations in database envir
 
 ## Additional Notes
 - Maintain a clear log of all operations and steps taken during the task execution.
-- Always prioritize security and data integrity when interacting with database environments.
+- Always prioritize security and data integrity when interacting with database and OS system environment.
 """
 
 
         
         
 class InteractWithDataBaseEnv(BaseTool):
-    """Use this tool to take specific action in database environment.
-    This tool takes as parameters the specific action content, eg, command, scripts or third-party tools, it then execute the action in the database environment, and it will finally return the result."""
+    """Use this tool to take specific action in database and OS system environment.
+    This tool takes as parameters the specific action content, eg, command, scripts or third-party tools, it then execute the action in the database and OS system environment, and it will finally return the result."""
     chain_of_thought: str = Field(...,
                                   description="Determine and list the correct commands or scripts of the given task"
                                               "For multi-step tasks, first break it down into smaller"
                                               "steps. Then, determine the commands or scripts for each step.")
-    specific_task: str = Field(..., description="The specific commands or scripts interacting with database environment.")
+    specific_task: str = Field(..., description="The specific commands or scripts interacting with database and OS system environment.")
 
 
     # This code will be executed if the agent calls this tool
@@ -117,13 +117,13 @@ class InteractWithDataBaseEnv(BaseTool):
       #db_task_response = db_api.Assign_DB_Task(self.specific_task)
       
       task_description = caller_thread.task_description if caller_thread.task_description else self.chain_of_thought
-      simulator_instruction = """You are an emulator of the MySQL/Postgres database environment (including the database and the Prometheus/grafna monitor) used to simulate the generation of results after interacting with the database, and systems administrator swho can access your infrastructure and make the necessary changes. I will describe to you the background of this database application. After that, you will receive a series of database commands, and you will be asked to generate as realistic a result as possible for the subsequent series of commands based on the context.
+      simulator_instruction = """You are an emulator of the MySQL/Postgres database (including the database and the Prometheus/grafna monitor) and OS system environment used to simulate the generation of results after interacting with the database and OS system environment, and systems administrator swho can access your infrastructure and make the necessary changes. I will describe to you the background of this database application. After that, you will receive a series of database commands, and you will be asked to generate as realistic a result as possible for the subsequent series of commands based on the context.
       
       The context is as following:
       """
       
       simulator_instruction += f"\n---\n{task_description}\n---"
-      simulator_instruction += """Please output the results of your simulation directly in the format of a real MySQL/Postgres database environment.
+      simulator_instruction += """Please output the results of your simulation directly in the format of a real MySQL/Postgres database and OS system environment.
       Please note: 
       *1. Do not output the thought process 
       *2. Do not output any interpretation of the results. 

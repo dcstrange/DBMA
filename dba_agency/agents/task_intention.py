@@ -58,12 +58,7 @@ _instruction = """
     ```
     - Ensure that each type of request (or 'UNKNOWN') and associated topics (or 'UNKNOWN') are clearly listed with appropriate explanations. The indentation should accurately reflect the structure of the information.
 
-# Step 4. **User Interaction**:
-    - Ensure that Request Analysis is send to the user before proceeding. Ask the user if he/she approves of the analysis results
-    - If the user makes any other requests or suggestions for changes to the analysis results, think about the user's response and regenerate the Request Analysis YAML Results. 
-    - If the user approves the analysis results, go to Step 5. 
-    
-# Step 5. **Recourse to the Expert Group**
+# Step 4. **Recourse to the Expert Group**
     - Interact with the Expert Group through the Experts Leader Agent.
     - Send the original text of the user's request along with the analysis results YAML to the Expert Leader agent in the message format:
     ```
@@ -77,6 +72,11 @@ _instruction = """
     - Finally, the results of the expert group's tasks are sent to the user.
 """
 
+temp = """# Step 4. **User Interaction**:
+    - Ensure that Request Analysis is send to the user before proceeding. Ask the user if he/she approves of the analysis results
+    - If the user makes any other requests or suggestions for changes to the analysis results, think about the user's response and regenerate the Request Analysis YAML Results. 
+    - If the user approves the analysis results, go to Step 5. 
+"""
 _tools=[]
 
 _file_folder=None
