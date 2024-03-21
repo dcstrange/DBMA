@@ -2,11 +2,12 @@ from agency_swarm import Agent
 from agency_swarm import BaseTool
 from pydantic import Field
 import db_pseudo_env.db_task_api as db_api
+from agency_swarm.util.oai import get_openai_client
 
 _name = "db_env_proxy"
 
 _description = """
-Responsible for performing specific tasks and operations in the database environment (including databases, monitoring systems, etc.) using the "InteractWithDataBaseEnv" function.
+Responsible for receiving specific tasks and operations and executing them in a database environment, including databases, Prometheus, grafna, etc.
 """
 
 # _instruction = """ #Instructions for Database Environment Agent
@@ -59,9 +60,10 @@ _instruction = """
 The Assistant is tasked with managing and executing operations in database environments. This involves understanding tasks related to databases, generating appropriate commands or scripts, and executing these operations using the "InteractWithDataBaseEnv" function.
 
 ## Primary Responsibilities
-1. **Task Reception and Analysis**: Receive and analyze tasks or series of tasks related to database environments.
-2. **Command Generation and Execution**: Depending on the nature of the task, either use provided commands and scripts or generate new ones to interact with the database environment.
-3. **Error Handling and Reporting**: Identify and resolve errors during execution or report them with detailed logs if resolution is not possible.
+1. **Task Reception and Analysis**
+2. **Command Generation and Execution**
+3. **Error Handling and Reporting**
+4. **Stress Tests Simulating**
 
 ## Detailed Instructions
 
@@ -94,9 +96,12 @@ The Assistant is tasked with managing and executing operations in database envir
 
 ## Additional Notes
 - Maintain a clear log of all operations and steps taken during the task execution.
-- Regularly update your knowledge and understanding of database environments and scripting languages to improve efficiency and accuracy in task execution.
 - Always prioritize security and data integrity when interacting with database environments.
 """
+
+
+        
+        
 class InteractWithDataBaseEnv(BaseTool):
     """Use this tool to take specific action in database environment.
     This tool takes as parameters the specific action content, eg, command, scripts or third-party tools, it then execute the action in the database environment, and it will finally return the result."""
@@ -108,8 +113,33 @@ class InteractWithDataBaseEnv(BaseTool):
 
 
     # This code will be executed if the agent calls this tool
-    def run(self):
-      db_task_response = db_api.Assign_DB_Task(self.specific_task)
+    def run(self, caller_thread):
+      #db_task_response = db_api.Assign_DB_Task(self.specific_task)
+      
+      task_description = caller_thread.task_description if caller_thread.task_description else self.chain_of_thought
+      simulator_instruction = """You are an emulator of the MySQL/Postgres database environment (including the database and the Prometheus/grafna monitor) used to simulate the generation of results after interacting with the database, and systems administrator swho can access your infrastructure and make the necessary changes. I will describe to you the background of this database application. After that, you will receive a series of database commands, and you will be asked to generate as realistic a result as possible for the subsequent series of commands based on the context.
+      
+      The context is as following:
+      """
+      
+      simulator_instruction += f"\n---\n{task_description}\n---"
+      simulator_instruction += """Please output the results of your simulation directly in the format of a real MySQL/Postgres database environment.
+      Please note: 
+      *1. Do not output the thought process 
+      *2. Do not output any interpretation of the results. 
+      *3. All results are given as complete strings, with no use of ellipsis.
+      *4. Do not tell user the results are simulated."""
+#     *3. The subsequent series of interactive commands are logically coherent, and you are asked to keep the logic of the output result data as correct as possible for multiple outputs.
+
+      client = get_openai_client()
+      completion = client.chat.completions.create(
+            model="gpt-4",
+            messages=[
+                {"role": "system", "content": simulator_instruction},
+                {"role": "user", "content": self.specific_task},
+            ]
+        )
+      db_task_response = completion.choices[0].message.content
       return str(db_task_response)
 
 _tools=[InteractWithDataBaseEnv]

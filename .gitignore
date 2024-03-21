@@ -56,7 +56,7 @@ cover/
 *.pot
 
 # Django stuff:
-*.log
+#*.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
@@ -171,3 +171,4 @@ secret-configs
 settings.json
 
 dba_agency/db_pseudo_env/tasks_history/
+#logs/
