@@ -17,6 +17,7 @@ with open(secret_file_path) as f:
         os.environ['OPENAI_API_KEY'] = f.read()
     else:
         os.environ['OPENAI_API_KEY'] = getpass("Please enter your openai key:")
+        
 set_openai_key(os.environ['OPENAI_API_KEY'])
 
 from agency_swarm import Agency
