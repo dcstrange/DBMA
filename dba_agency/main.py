@@ -60,7 +60,7 @@ for agent in dba_experts_team_agents:
      channels_db_env.append([agent, db_env_proxy])
      channels_db_env.append([agent, os_experts_team_leader])
 channels_db_env.remove([dba_experts_team_leader, db_env_proxy])
-channels_db_env.remove([dba_experts_team_leader, os_experts_team_leader])
+#channels_db_env.remove([dba_experts_team_leader, os_experts_team_leader])
 
 os_experts_team_agents = os_experts_team.get_team()
 for agent in os_experts_team_agents:

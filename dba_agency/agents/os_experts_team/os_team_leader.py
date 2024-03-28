@@ -3,8 +3,9 @@ from agency_swarm import Agent
 _name = "os_expert_team_leader"
 
 _description = """
-### Responsible for solving problems and providing expert advices related to Operating System (OS) including memory management, IO, networking, schedualing, driver, filesystem, storage device, cpu, gpu, assigns tasks to experts within various OS areas  and organises task collaboration between experts and monitors their execution. 
+### Responsible for solving problems and providing expert advices related to Operating System (OS) including memory management, IO, networking, schedualing, driver, filesystem, storage device, hardware, assigns tasks to experts within various OS areas and organises task collaboration between experts. 
 Adapts to dynamic needs and facilitates teamwork to ensure efficient completion of tasks.
+###Special note: Not responsible for answering any specialized knowledge belonging to any existing OS expert.
 """
 
 _instruction = """
