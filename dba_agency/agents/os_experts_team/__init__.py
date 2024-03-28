@@ -44,10 +44,10 @@ class OSTeam:
             # expert_gpu.create_agent(),
         ]
         for i in range(len(self.team)):
+            if self.team[i] is not self.team_leader:
+                continue
             for j in range(len(self.team)):
                 if i != j:
-                    if self.team[j] is self.team_leader:
-                        continue
                     self.chat_graph.append([self.team[i], self.team[j]])
 
     def get_team_leader(self) -> Agent:
