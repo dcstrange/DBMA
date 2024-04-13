@@ -21,17 +21,17 @@ set_openai_key(os.environ['OPENAI_API_KEY'])
 
 from agency_swarm import Agency
 from agency_swarm import Agent
-
+from agents import db_env_proxy
 from agents import single_solver
-from agents.experts_team import ExpertTeam
 
 single_solver = single_solver.create_agent()
+db_env_proxy = db_env_proxy.create_agent()
 
 #experts_team.add_agent(db_env_proxy)
 
 chat_graph = [
     single_solver,
-    []
+    [single_solver, db_env_proxy]
 ]
 
 agency_manifesto = """

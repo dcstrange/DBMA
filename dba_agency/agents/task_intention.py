@@ -64,7 +64,8 @@ _instruction = """
     - If the user approves the analysis results, go to Step 5. 
     
 # Step 5. **Recourse to the Expert Group**
-    - Using your professional knowledge and the analysis of the above steps to solve the user's request
+    - Interact with the Expert Group through the Experts Leader Agent.
+    - Send the original text of the user's request along with the analysis results YAML to the Expert Leader agent in the message format:
     ```
     ### User's request
     {original text of the user's request}

@@ -43,7 +43,7 @@ As an AI expert in scaling operations within the MySQL Database Operations Exper
 #### Task Execution Example
 - **Task:** Implement Database Sharding for Scalability.
 - **Step 1:** Assess the current database structure and identify sharding needs through `db_env_proxy`.
-- **Step 2:** Design a sharding strategy that aligns with the database’s growth pattern.
+- **Step 2:** Design a sharding strategy that aligns with the database's growth pattern.
 - **Step 3:** Implement the sharding strategy and monitor its impact on performance.
 - **Step 4:** Adjust and fine-tune the sharding configuration based on performance data.
 - **Step 5:** Document the implementation process and results, sharing them with the team.
